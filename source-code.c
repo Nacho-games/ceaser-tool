@@ -259,12 +259,12 @@ void decrypt() {
     int i;
     int module;
     int pos;
+    int inversion;
 
     bool correct = false;
     bool hasDuplicates = false;
     bool allLetters = true;
     bool found = false;
-    bool inversion;
 
 
 
@@ -379,7 +379,7 @@ void decrypt() {
 
     inversionChar[strcspn(inversionChar, "\n")] = '\0';
 
-    if (!strcmp(inversionChar, "Y") || !strcmp(inversionStr, "y")) {
+    if (!strcmp(inversionChar, "Y") || !strcmp(inversionChar, "y")) {
         inversion = 1;
         strcpy(inversionStr, "Yes");
     } else if (!strcmp(inversionChar, "N") || !strcmp(inversionChar, "n")) {
@@ -458,11 +458,13 @@ void decrypt() {
         
         if (inversion == 0) {
             printf("Module: %d (Normal)\n%s\n\n", module, decryptedMessage);
-        } else if (inversion == 1) {
+        } 
+        if (inversion == 1) {
             printf("Module: %d (Inverted)\n%s\n\n", module, inverted);
-        } else {
+        } 
+        if (inversion == 2) {
             printf("Module: %d (Normal)\n%s\n\n", module, decryptedMessage);
-            printf("Module: %d (Inverted)\n%s\n\n", module, inverted);
+            printf("Module: %d (Inverted)\n%s\n\n\n", module, inverted);
         }
     
     }
